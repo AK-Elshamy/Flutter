@@ -1,16 +1,16 @@
+import 'payment.dart';
+
 void main() {
-  User user = new User("OMar", 22);
-  print("Name: " + user.name);
-  print(user.age);
-}
+  print("\n\n--- Payment Processing ---\n");
+  List<PaymentMethod> paymentMethods = [
+    CardPayment(),
+    WalletPayment(),
+    CashPayment(),
+    InstpayPayment(),
+  ];
 
-class User {
-  String? name;
-  int? age;
-  int? _ salary;
-
-  User(String name, int age) {
-    this.name = name;
-    this.age = age;
+  for (var method in paymentMethods) {
+    print("\nProcessing payment with ${method.runtimeType}:");
+    PaymentService().processPayment(method, 100.0);
   }
 }
